@@ -1,4 +1,5 @@
-﻿using LibrarySystem.Views;
+﻿using LibrarySystem.Service;
+using LibrarySystem.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,12 +17,11 @@ namespace LibrarySystem
         public Form1()
         {
             InitializeComponent();
-            RoleBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RolesAdding(RoleBox);
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            RoleBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RolesAdding(RoleBox);
         }
 
 
@@ -33,24 +33,29 @@ namespace LibrarySystem
 
         private void LoginBox_MouseClick(object sender, MouseEventArgs e)
         {
-            LoginLabel.Visible = false;
+            DisableLabels();
         }
 
         private void PasswordBox_MouseClick(object sender, MouseEventArgs e)
         {
-            PasLabel.Visible = false;
+            DisableLabels();
         }
 
         private void RoleBox_MouseClick(object sender, MouseEventArgs e)
         {
-            RoleLabel.Visible = false;
-
+            DisableLabels();
         }
 
         public void RolesAdding(ComboBox listb)
         {
             listb.Items.Add("Библиотекарь");
             listb.Items.Add("Администратор");
+        }
+        public void DisableLabels()
+        {
+            LoginLabel.Visible = false;
+            PasLabel.Visible = false;
+            RoleLabel.Visible = false;
         }
 
         private void RoleBox_DropDownClosed(object sender, EventArgs e)
@@ -60,9 +65,19 @@ namespace LibrarySystem
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MainMenuForm mainMenuForm = new MainMenuForm();
-            mainMenuForm.Show();
-            Hide();
+            string query = $"SELECT * FROM Users WHERE Login = '{ LoginBox.Text }' and Password = '{ PasswordBox.Text }' and Role = N'{ RoleBox.Text }'";
+            DatabaseConnection dc = new DatabaseConnection();
+            if (dc.SqlCheck(query) == true)
+            {
+                Saver.Role = RoleBox.Text;
+                MainMenuForm mainMenuForm = new MainMenuForm();
+                mainMenuForm.Show();
+                Hide();
+            }
+            else
+            {
+                MessageBox.Show("Введите корректные данные");
+            }
         }
     }
 }

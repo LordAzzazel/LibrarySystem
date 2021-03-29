@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibrarySystem.Service;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,9 +17,14 @@ namespace LibrarySystem.Views
         public MainMenuForm()
         {
             InitializeComponent();
+        }
+        private void MainMenuForm_Load(object sender, EventArgs e)
+        {
             btnToHomePage.Visible = false;
             ShowIcon = false;
             this.Text = string.Empty;
+            if(Saver.Role == "Библиотекарь") { btnLib.Visible = false; }
+
         }
 
         private void OpenChildForm(Form childForm, object btnSender)
@@ -35,11 +41,12 @@ namespace LibrarySystem.Views
             panelDesktop.Tag = childForm;
             Button btn = btnSender as Button;
             TitleLabel.Text = btn.Text;
+            Saver.Status = btn.Text;
             childForm.Show();
             pictureBox2.Visible = false;
             btnToHomePage.Visible = true;
         }
-        
+
         private void button1_Click(object sender, EventArgs e)
         {
             OpenChildForm(new Views.FormTableShower(), sender);
@@ -65,9 +72,13 @@ namespace LibrarySystem.Views
             OpenChildForm(new Views.FormTableShower(), sender);
         }
 
+        private void btnLib_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Views.FormTableShower(), sender);
+        }
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Close();
+            Application.Exit();
         }
 
         private void btnToHomePage_Click(object sender, EventArgs e)
@@ -80,5 +91,11 @@ namespace LibrarySystem.Views
             TitleLabel.Text = "Домашняя страница";
             pictureBox2.Visible = true;
         }
+
+        private void MainMenuForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
     }
 }
