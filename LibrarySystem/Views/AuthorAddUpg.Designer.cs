@@ -204,6 +204,7 @@ namespace LibrarySystem.Views
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(292, 447);
             this.Controls.Add(this.YearLabel);
             this.Controls.Add(this.ShortFioLabel);

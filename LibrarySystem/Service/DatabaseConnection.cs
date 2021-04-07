@@ -77,16 +77,45 @@ namespace LibrarySystem.Service
             }
 
         }
-        public void FillCombobox(string query, ComboBox comboBox, int column)
+        public void FillCombobox(string query, ComboBox comboBox, string columnName)
         {
             sqlConnection.Open();
             SqlDataAdapter SDA = new SqlDataAdapter(query, sqlConnection);
-            DataSet ds = new DataSet();
-            SDA.Fill(ds);
-            comboBox.DataSource = ds.Tables[column];
+            DataTable dt = new DataTable();
+            SDA.Fill(dt);
+            foreach (DataRow item in dt.Rows)
+            {
+                comboBox.Items.Add(item[$"{ columnName }"].ToString());
+            }
             sqlConnection.Close();
         }
 
+        public string GetItemId(string item, string itemName, string tableName)
+        {
+            string query = $"Select * from { tableName } Where { itemName } = N'{ item }'";
+            sqlConnection.Open();
+            SqlCommand command = new SqlCommand(query, sqlConnection);
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    string id = reader.GetInt32(0).ToString();
+                    sqlConnection.Close();
+                    return id;
+                }
+            }
+            else
+            {
+                sqlConnection.Close();
+                return null;
+            }
+            sqlConnection.Close();
+            reader.Close();
+            return null;
+        }
         
     }
 }

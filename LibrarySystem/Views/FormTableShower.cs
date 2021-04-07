@@ -41,6 +41,11 @@ namespace LibrarySystem.Views
             Saver.FormDisabler();
             Saver.FormName = Adding;
             Saver.FormFunctionName = "Добавить";
+            if (form is GivenBookAddUpg)
+            {
+                Saver.FormName = "Выдача";
+                Saver.FormFunctionName = "Выдать";
+            }
             sells.Add("0");
             Saver.Values = sells;
             form.Show();
@@ -52,6 +57,11 @@ namespace LibrarySystem.Views
             Saver.FormDisabler();
             Saver.FormName = Updating;
             Saver.FormFunctionName = "Изменить";
+            if (form is GivenBookAddUpg)
+            {
+                Saver.FormName = "Продление";
+                Saver.FormFunctionName = "Продлить";
+            }
             form.Show();
         }
 
@@ -84,10 +94,13 @@ namespace LibrarySystem.Views
                     form = reader;
                     break;
                 case "Выданные книги":
-                    query = "Select GivenBooks.Id, GivenBooks.Номер_Билета_Читателя, Books.Название_книги from GivenBooks inner join Books on GivenBooks.Название_Книги = Books.Id";
-                    tableName = "Books";
-                    BookAddUpg bookk = new BookAddUpg();
-                    form = bookk;
+                    query = "Select GivenBooks.Id, GivenBooks.Номер_Билета_Читателя, Books.Название_книги, Дата_сдачи from GivenBooks inner join Books on GivenBooks.Название_Книги = Books.Id";
+                    tableName = "GivenBooks";
+                    GivenBookAddUpg givenBook = new GivenBookAddUpg();
+                    btnAdd.Text = "Выдать";
+                    btnUpd.Text = "Продлить";
+                    btnDel.Text = "Вернуть";
+                    form = givenBook;
                     break;
                 case "Авторы":
                     query = "Select * from Authors";
@@ -120,6 +133,7 @@ namespace LibrarySystem.Views
             }
             Saver.Values = sell;
         }
+
 
     }
 }
