@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibrarySystem.Service;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,16 +13,25 @@ namespace LibrarySystem.Views
 {
     public partial class BookAddUpg : Form
     {
-        public BookAddUpg(string functionName, string formName)
+        public BookAddUpg()
         {
             InitializeComponent();
-            FormNameLabel.Text = formName + " книги";
-            btnAddUpg.Text = functionName;
         }
 
+        private void BookAddUpg_Load(object sender, EventArgs e)
+        {
+            
+        }
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Close();
+            Saver.FormEnabler();
+            Hide();
+        }
+
+        private void BookAddUpg_Activated(object sender, EventArgs e)
+        {
+            FormNameLabel.Text = Saver.FormName + " книги";
+            btnAddUpg.Text = Saver.FormFunctionName;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace LibrarySystem.Service
 {
@@ -14,5 +15,26 @@ namespace LibrarySystem.Service
 
         public static string Query { get; set; }
 
+        public static string FormName { get; set; }
+        
+        public static string FormFunctionName { get; set; }
+
+        public static List<string> Values { get; set; }
+
+        public static Form MainForm { get; set; }
+
+        public static Form TableShower { get; set; }
+
+        public static void FormDisabler()
+        {
+            MainForm.Enabled = false;
+            TableShower.Enabled = false;
+        }
+        public static void FormEnabler()
+        {
+            MainForm.Enabled = true;
+            TableShower.Enabled = true;
+            Values.Clear();
+        }
     }
 }

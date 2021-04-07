@@ -42,19 +42,12 @@ namespace LibrarySystem
             this.PasswordBox = new System.Windows.Forms.TextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.RoleLabel = new System.Windows.Forms.Label();
-            this.RoleBox = new System.Windows.Forms.ComboBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -186,58 +179,6 @@ namespace LibrarySystem
             this.panel4.Size = new System.Drawing.Size(268, 1);
             this.panel4.TabIndex = 5;
             // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.RoleLabel);
-            this.panel5.Controls.Add(this.RoleBox);
-            this.panel5.Controls.Add(this.pictureBox4);
-            this.panel5.Location = new System.Drawing.Point(12, 277);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(268, 32);
-            this.panel5.TabIndex = 7;
-            // 
-            // RoleLabel
-            // 
-            this.RoleLabel.AutoSize = true;
-            this.RoleLabel.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.RoleLabel.Location = new System.Drawing.Point(28, 7);
-            this.RoleLabel.Name = "RoleLabel";
-            this.RoleLabel.Size = new System.Drawing.Size(42, 18);
-            this.RoleLabel.TabIndex = 8;
-            this.RoleLabel.Text = "Роль";
-            // 
-            // RoleBox
-            // 
-            this.RoleBox.BackColor = System.Drawing.SystemColors.Window;
-            this.RoleBox.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.RoleBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.RoleBox.FormattingEnabled = true;
-            this.RoleBox.Location = new System.Drawing.Point(31, 4);
-            this.RoleBox.Name = "RoleBox";
-            this.RoleBox.Size = new System.Drawing.Size(234, 26);
-            this.RoleBox.TabIndex = 1;
-            this.RoleBox.DropDownClosed += new System.EventHandler(this.RoleBox_DropDownClosed);
-            this.RoleBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RoleBox_MouseClick);
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::LibrarySystem.Properties.Resources.role;
-            this.pictureBox4.Location = new System.Drawing.Point(0, 3);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(25, 25);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 0;
-            this.pictureBox4.TabStop = false;
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.panel6.ForeColor = System.Drawing.Color.White;
-            this.panel6.Location = new System.Drawing.Point(12, 311);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(268, 1);
-            this.panel6.TabIndex = 6;
-            // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
@@ -245,7 +186,7 @@ namespace LibrarySystem
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(12, 346);
+            this.button2.Location = new System.Drawing.Point(12, 338);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(268, 36);
             this.button2.TabIndex = 8;
@@ -270,8 +211,6 @@ namespace LibrarySystem
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(292, 447);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.panel6);
-            this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -292,9 +231,6 @@ namespace LibrarySystem
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -314,13 +250,8 @@ namespace LibrarySystem
         private System.Windows.Forms.TextBox PasswordBox;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.ComboBox RoleBox;
-        private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label PasLabel;
-        private System.Windows.Forms.Label RoleLabel;
         private System.Windows.Forms.Label LoginLabel;
     }
 }

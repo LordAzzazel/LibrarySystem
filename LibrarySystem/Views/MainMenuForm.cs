@@ -24,6 +24,7 @@ namespace LibrarySystem.Views
             ShowIcon = false;
             this.Text = string.Empty;
             if(Saver.Role == "Библиотекарь") { btnLib.Visible = false; }
+            Saver.MainForm = this;
 
         }
 

@@ -63,6 +63,12 @@
   <ItemGroup>
     <Compile Include="Service\DatabaseConnection.cs" />
     <Compile Include="Service\Saver.cs" />
+    <Compile Include="Views\AuthorAddUpg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AuthorAddUpg.Designer.cs">
+      <DependentUpon>AuthorAddUpg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\BookAddUpg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +80,12 @@
     </Compile>
     <Compile Include="Views\FormTableShower.Designer.cs">
       <DependentUpon>FormTableShower.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LibrarianAddUpg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\LibrarianAddUpg.Designer.cs">
+      <DependentUpon>LibrarianAddUpg.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginForm.cs">
       <SubType>Form</SubType>
@@ -89,6 +101,18 @@
     <Compile Include="Views\MainMenuForm.Designer.cs">
       <DependentUpon>MainMenuForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\PublisherAddUpg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PublisherAddUpg.Designer.cs">
+      <DependentUpon>PublisherAddUpg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReaderAddUpg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ReaderAddUpg.Designer.cs">
+      <DependentUpon>ReaderAddUpg.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -99,17 +123,29 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\AuthorAddUpg.resx">
+      <DependentUpon>AuthorAddUpg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\BookAddUpg.resx">
       <DependentUpon>BookAddUpg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormTableShower.resx">
       <DependentUpon>FormTableShower.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\LibrarianAddUpg.resx">
+      <DependentUpon>LibrarianAddUpg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainMenuForm.resx">
       <DependentUpon>MainMenuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\PublisherAddUpg.resx">
+      <DependentUpon>PublisherAddUpg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReaderAddUpg.resx">
+      <DependentUpon>ReaderAddUpg.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

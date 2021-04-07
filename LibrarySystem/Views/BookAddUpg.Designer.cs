@@ -221,6 +221,8 @@ namespace LibrarySystem.Views
             this.Name = "BookAddUpg";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BookAddUpg";
+            this.Activated += new System.EventHandler(this.BookAddUpg_Activated);
+            this.Load += new System.EventHandler(this.BookAddUpg_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

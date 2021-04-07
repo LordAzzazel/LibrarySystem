@@ -12,28 +12,36 @@ namespace LibrarySystem.Service
     class DatabaseConnection
     {
 
-        SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\lebed\source\repos\LibrarySystem\LibrarySystem\Library.mdf;Integrated Security=True");
+        SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Application.StartupPath + @"\Library.mdf;Integrated Security=True");
+/*        SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\lebed\source\repos\LibrarySystem\LibrarySystem\Library.mdf;Integrated Security=True");
+*/
 
-
-        public bool SqlCheck(string query)
+        public string SqlCheck(string query)
         {
-            sqlConnection.Open();
-            SqlDataAdapter sda = new SqlDataAdapter(query, sqlConnection);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            if (dt.Rows.Count > 0)
+            using (sqlConnection)
             {
-                sqlConnection.Close();
-                return true;
+                SqlCommand command = new SqlCommand(query, sqlConnection);
+                sqlConnection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        return reader.GetString(4);
+                    }
+                }
+                else
+                {
+                    sqlConnection.Close();
+                    return null;
+                }
+                reader.Close();
+                return null;
             }
-            else
-            {
-                sqlConnection.Close();
-                return false;
-            }
+
         }
-
-
         public void ShowTable(string query, DataGridView dg)
         {
             sqlConnection.Open();
@@ -55,7 +63,7 @@ namespace LibrarySystem.Service
         public void Delete(string query)
         {
             const string message = "Вы уверены?";
-            const string caption = "Удалено";
+            const string caption = "Удаление";
             var result = MessageBox.Show(message, caption,
                                          MessageBoxButtons.YesNo,
                                          MessageBoxIcon.Question);
@@ -78,5 +86,7 @@ namespace LibrarySystem.Service
             comboBox.DataSource = ds.Tables[column];
             sqlConnection.Close();
         }
+
+        
     }
 }

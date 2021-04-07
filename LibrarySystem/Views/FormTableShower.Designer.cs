@@ -41,13 +41,11 @@ namespace LibrarySystem.Views
             // 
             // dataGridView1
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(15, 41);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(667, 301);
+            this.dataGridView1.Size = new System.Drawing.Size(667, 281);
             this.dataGridView1.TabIndex = 0;
             // 
             // btnAdd
@@ -96,6 +94,7 @@ namespace LibrarySystem.Views
             this.btnDel.TabIndex = 3;
             this.btnDel.Text = "Удалить";
             this.btnDel.UseVisualStyleBackColor = false;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // label1
             // 
@@ -129,7 +128,9 @@ namespace LibrarySystem.Views
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormTableShower";
             this.Text = "FormTableShower";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormTableShower_FormClosed);
             this.Load += new System.EventHandler(this.FormTableShower_Load);
+            this.EnabledChanged += new System.EventHandler(this.FormTableShower_EnabledChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
