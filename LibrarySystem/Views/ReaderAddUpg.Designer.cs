@@ -35,7 +35,6 @@ namespace LibrarySystem.Views
             this.PatronLabel = new System.Windows.Forms.Label();
             this.NameLabel = new System.Windows.Forms.Label();
             this.SurnameLabel = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -46,6 +45,7 @@ namespace LibrarySystem.Views
             this.AddressLabel = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,15 +103,6 @@ namespace LibrarySystem.Views
             this.SurnameLabel.Size = new System.Drawing.Size(60, 15);
             this.SurnameLabel.TabIndex = 45;
             this.SurnameLabel.Text = "Фамилия:";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
-            this.textBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.textBox4.Location = new System.Drawing.Point(110, 289);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(169, 21);
-            this.textBox4.TabIndex = 43;
             // 
             // textBox3
             // 
@@ -218,12 +209,23 @@ namespace LibrarySystem.Views
             this.dateTimePicker1.TabIndex = 52;
             this.dateTimePicker1.Value = new System.DateTime(2021, 4, 7, 0, 0, 0, 0);
             // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
+            this.maskedTextBox1.ForeColor = System.Drawing.Color.Black;
+            this.maskedTextBox1.Location = new System.Drawing.Point(110, 286);
+            this.maskedTextBox1.Mask = "8(999) 000-00-00 ";
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(169, 21);
+            this.maskedTextBox1.TabIndex = 53;
+            // 
             // ReaderAddUpg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(292, 447);
+            this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.AddressLabel);
             this.Controls.Add(this.textBox6);
@@ -232,7 +234,6 @@ namespace LibrarySystem.Views
             this.Controls.Add(this.PatronLabel);
             this.Controls.Add(this.NameLabel);
             this.Controls.Add(this.SurnameLabel);
-            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -260,7 +261,6 @@ namespace LibrarySystem.Views
         private System.Windows.Forms.Label PatronLabel;
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.Label SurnameLabel;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
@@ -271,5 +271,6 @@ namespace LibrarySystem.Views
         private System.Windows.Forms.Label AddressLabel;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
     }
 }

@@ -32,11 +32,14 @@ namespace LibrarySystem.Views
             string booksQuery = $"Select * from { tableBook }";
             dc.FillCombobox(readerssQuery, comboBox1, "Имя");
             dc.FillCombobox(booksQuery, comboBox2, "Название_книги");
-            if (Saver.FormName == "Изменение")
+            if (Saver.FormName == "Продление")
             {
+                ReaderNumberLabel.Text = "Номер читателя:";
                 comboBox1.Text = Saver.Values[1];
                 comboBox2.Text = Saver.Values[2];
                 dateTimePicker1.Text = Saver.Values[3];
+                comboBox1.Enabled = false;
+                comboBox2.Enabled = false;
             }
         }
 
@@ -58,10 +61,10 @@ namespace LibrarySystem.Views
             }
             else
             {
-                readerId = dc.GetItemId(comboBox1.Text, "Имя", tableReader);
                 bookId = dc.GetItemId(comboBox2.Text, "Название_книги", tableBook);
                 if (Saver.FormFunctionName == "Выдать")
                 {
+                    readerId = dc.GetItemId(comboBox1.Text, "Имя", tableReader);
                     query = $"Insert into GivenBooks values(N'{ readerId }', N'{ bookId }', '{ dateTimePicker1.Value }')";
                     dc.AddorUpgr(query, "Добавлено");
                     Saver.FormEnabler();
@@ -69,9 +72,11 @@ namespace LibrarySystem.Views
                 }
                 else if (Saver.FormFunctionName == "Продлить")
                 {
-                    query = $"Update GivenBooks Set Номер_Билета_Читателя = { readerId }, Название_Книги = { bookId }, Дата_сдачи = '{ dateTimePicker1.Value }' Where Id = { Saver.Values[0]}";
+                    query = $"Update GivenBooks Set Номер_Билета_Читателя = { comboBox1.Text }, Название_Книги = { bookId }, Дата_сдачи = '{ dateTimePicker1.Value }' Where Id = { Saver.Values[0]}";
                     dc.AddorUpgr(query, "Изменено");
                     Saver.FormEnabler();
+                    comboBox1.Enabled = true;
+                    comboBox2.Enabled = true;
                     Hide();
                 }
             }

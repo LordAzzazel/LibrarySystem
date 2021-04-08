@@ -28,7 +28,7 @@ namespace LibrarySystem.Views
                 textBox1.Text = Saver.Values[1];
                 textBox2.Text = Saver.Values[2];
                 textBox3.Text = Saver.Values[3];
-                textBox4.Text = Saver.Values[4];
+                maskedTextBox1.Text = Saver.Values[4];
                 dateTimePicker1.Text = Saver.Values[5];
                 textBox6.Text = Saver.Values[6];
             }
@@ -50,14 +50,14 @@ namespace LibrarySystem.Views
         {
             if (Saver.FormFunctionName == "Добавить")
             {
-                query = $"Insert into Readers values(N'{ textBox1.Text }', N'{ textBox2.Text }', N'{ textBox3.Text}', { textBox4.Text }, '{ dateTimePicker1.Value }', N'{ textBox6.Text }')";
+                query = $"Insert into Readers values(N'{ textBox1.Text }', N'{ textBox2.Text }', N'{ textBox3.Text}', '{ maskedTextBox1.Text }', '{ dateTimePicker1.Value }', N'{ textBox6.Text }')";
                 dc.AddorUpgr(query, "Добавлено");
                 Saver.FormEnabler();
                 Hide();
             }
             else if (Saver.FormFunctionName == "Изменить")
             {
-                query = $"Update Readers Set Фамилия = N'{ textBox1.Text }', Имя = N'{ textBox2.Text }', Отчество = N'{ textBox3.Text }', Телефон = { textBox4.Text }, Дата_Рождения = '{ dateTimePicker1.Value }', Адрес = N'{ textBox6.Text }' Where Номер_билета = { Saver.Values[0]}";
+                query = $"Update Readers Set Фамилия = N'{ textBox1.Text }', Имя = N'{ textBox2.Text }', Отчество = N'{ textBox3.Text }', Телефон = '{ maskedTextBox1.Text }', Дата_Рождения = '{ dateTimePicker1.Value }', Адрес = N'{ textBox6.Text }' Where Номер_билета = { Saver.Values[0]}";
                 dc.AddorUpgr(query, "Изменено");
                 Saver.FormEnabler();
                 Hide();

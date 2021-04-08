@@ -33,7 +33,7 @@ namespace LibrarySystem.Views
             {
                 textBox1.Text = Saver.Values[1];
                 comboBox1.Text = Saver.Values[2];
-                textBox3.Text = Saver.Values[3];
+                maskedTextBox1.Text = Saver.Values[3];
                 comboBox2.Text = Saver.Values[4];
                 textBox5.Text = Saver.Values[5];
             }
@@ -62,14 +62,14 @@ namespace LibrarySystem.Views
                 itemId2 = dc.GetItemId(comboBox2.Text, "Наименование", tablePub);
                 if (Saver.FormFunctionName == "Добавить")
                 {
-                    query = $"Insert into Books values(N'{ textBox1.Text }', { itemId }, { textBox3.Text}, { itemId2 }, { textBox5.Text })";
+                    query = $"Insert into Books values(N'{ textBox1.Text }', { itemId }, { maskedTextBox1.Text}, { itemId2 }, { textBox5.Text })";
                     dc.AddorUpgr(query, "Добавлено");
                     Saver.FormEnabler();
                     Hide();
                 }
                 else if (Saver.FormFunctionName == "Изменить")
                 {
-                    query = $"Update Books Set Название_книги = N'{ textBox1.Text }', Автор = { itemId }, Год = { textBox3.Text}, Издательство = { itemId2 }, Количество = { textBox5.Text} Where Id = { Saver.Values[0]}";
+                    query = $"Update Books Set Название_книги = N'{ textBox1.Text }', Автор = { itemId }, Год = { maskedTextBox1.Text}, Издательство = { itemId2 }, Количество = { textBox5.Text} Where Id = { Saver.Values[0]}";
                     dc.AddorUpgr(query, "Изменено");
                     Saver.FormEnabler();
                     Hide();

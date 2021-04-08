@@ -85,9 +85,9 @@ namespace LibrarySystem.Views
             this.ReaderNumberLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.ReaderNumberLabel.Location = new System.Drawing.Point(7, 186);
             this.ReaderNumberLabel.Name = "ReaderNumberLabel";
-            this.ReaderNumberLabel.Size = new System.Drawing.Size(91, 15);
+            this.ReaderNumberLabel.Size = new System.Drawing.Size(88, 15);
             this.ReaderNumberLabel.TabIndex = 31;
-            this.ReaderNumberLabel.Text = "Номер билета:";
+            this.ReaderNumberLabel.Text = "Имя читателя:";
             // 
             // FormNameLabel
             // 
@@ -156,6 +156,7 @@ namespace LibrarySystem.Views
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(169, 20);
             this.dateTimePicker1.TabIndex = 40;
+            this.dateTimePicker1.Value = new System.DateTime(2021, 4, 8, 0, 0, 0, 0);
             // 
             // GivenBookAddUpg
             // 

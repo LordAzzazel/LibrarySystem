@@ -33,13 +33,13 @@ namespace LibrarySystem.Views
             this.YearLabel = new System.Windows.Forms.Label();
             this.DescriptLabel = new System.Windows.Forms.Label();
             this.PubNameLabel = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.FormNameLabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnAddUpg = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,15 +75,6 @@ namespace LibrarySystem.Views
             this.PubNameLabel.Size = new System.Drawing.Size(96, 15);
             this.PubNameLabel.TabIndex = 31;
             this.PubNameLabel.Text = "Наименование:";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
-            this.textBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.textBox4.Location = new System.Drawing.Point(110, 267);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(169, 21);
-            this.textBox4.TabIndex = 28;
             // 
             // textBox2
             // 
@@ -153,16 +144,27 @@ namespace LibrarySystem.Views
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
+            this.maskedTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.maskedTextBox1.Location = new System.Drawing.Point(110, 267);
+            this.maskedTextBox1.Mask = "0000";
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(169, 21);
+            this.maskedTextBox1.TabIndex = 37;
+            this.maskedTextBox1.ValidatingType = typeof(int);
+            // 
             // PublisherAddUpg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(292, 447);
+            this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.YearLabel);
             this.Controls.Add(this.DescriptLabel);
             this.Controls.Add(this.PubNameLabel);
-            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.FormNameLabel);
@@ -187,12 +189,12 @@ namespace LibrarySystem.Views
         private System.Windows.Forms.Label YearLabel;
         private System.Windows.Forms.Label DescriptLabel;
         private System.Windows.Forms.Label PubNameLabel;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label FormNameLabel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnAddUpg;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
     }
 }

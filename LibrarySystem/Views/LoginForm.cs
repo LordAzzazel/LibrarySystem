@@ -50,7 +50,13 @@ namespace LibrarySystem
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if(LoginBox.Text != null || LoginBox != null)
+
+            if (String.IsNullOrEmpty(LoginBox.Text) || String.IsNullOrEmpty(PasswordBox.Text))
+            {
+                MessageBox.Show("Заполните все поля");
+                return;
+            }
+            else
             {
                 string query = $"SELECT * FROM Users WHERE Login = '{ LoginBox.Text }' and Password = '{ PasswordBox.Text }'";
                 DatabaseConnection dc = new DatabaseConnection();
@@ -64,15 +70,10 @@ namespace LibrarySystem
                 }
                 else
                 {
-                    if(String.IsNullOrEmpty(LoginBox.Text) || String.IsNullOrEmpty(PasswordBox.Text))
-                    {
-                        MessageBox.Show("Заполните все поля");
-                        return;
-                    }
                     MessageBox.Show("Введите корректные данные");
                 }
             }
-            
+
         }
     }
 }

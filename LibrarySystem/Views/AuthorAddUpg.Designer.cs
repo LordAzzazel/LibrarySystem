@@ -35,7 +35,6 @@ namespace LibrarySystem.Views
             this.PatronLabel = new System.Windows.Forms.Label();
             this.NameLabel = new System.Windows.Forms.Label();
             this.SurnameLabel = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -44,6 +43,7 @@ namespace LibrarySystem.Views
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnAddUpg = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,20 +102,11 @@ namespace LibrarySystem.Views
             this.SurnameLabel.TabIndex = 31;
             this.SurnameLabel.Text = "Фамилия:";
             // 
-            // textBox5
-            // 
-            this.textBox5.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
-            this.textBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.textBox5.Location = new System.Drawing.Point(110, 325);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(169, 21);
-            this.textBox5.TabIndex = 30;
-            // 
             // textBox4
             // 
             this.textBox4.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
             this.textBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.textBox4.Location = new System.Drawing.Point(110, 289);
+            this.textBox4.Location = new System.Drawing.Point(111, 289);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(169, 21);
             this.textBox4.TabIndex = 29;
@@ -200,18 +191,29 @@ namespace LibrarySystem.Views
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
+            this.maskedTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.maskedTextBox1.Location = new System.Drawing.Point(111, 323);
+            this.maskedTextBox1.Mask = "0000";
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(169, 21);
+            this.maskedTextBox1.TabIndex = 36;
+            this.maskedTextBox1.ValidatingType = typeof(int);
+            // 
             // AuthorAddUpg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(292, 447);
+            this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.YearLabel);
             this.Controls.Add(this.ShortFioLabel);
             this.Controls.Add(this.PatronLabel);
             this.Controls.Add(this.NameLabel);
             this.Controls.Add(this.SurnameLabel);
-            this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
@@ -240,7 +242,6 @@ namespace LibrarySystem.Views
         private System.Windows.Forms.Label PatronLabel;
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.Label SurnameLabel;
-        private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
@@ -249,5 +250,6 @@ namespace LibrarySystem.Views
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnAddUpg;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
     }
 }

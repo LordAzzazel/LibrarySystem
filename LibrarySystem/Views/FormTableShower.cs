@@ -14,7 +14,7 @@ namespace LibrarySystem.Views
     public partial class FormTableShower : Form
     {
         private string Adding = "Добавление", Updating = "Изменение";
-        private string query, tableName;
+        private string query, tableName, idName;
         private Form form;
         private List<string> sells;
 
@@ -67,10 +67,32 @@ namespace LibrarySystem.Views
 
         private void btnDel_Click(object sender, EventArgs e)
         {
-            query = $"Delete from {tableName} where Id = {dataGridView1.CurrentRow.Cells[0].Value}";
+            idName = "Id";
+            if(form is ReaderAddUpg)
+            {
+                idName = "Номер_билета";
+            }
+            query = $"Delete from {tableName} where {idName} = {dataGridView1.CurrentRow.Cells[0].Value}";
             dc.Delete(query);
             Checker();
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            /*if (textBox1.Text != string.Empty)
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Cells[0].ToString().Contains(textBox1.Text))
+                    {
+                        row.Visible = true;
+                    }
+                    else
+                        row.Visible = false;
+                }
+            }*/
+        }
+
         private void FormTableShower_FormClosed(object sender, FormClosedEventArgs e)
         {
             form.Close();
@@ -82,7 +104,7 @@ namespace LibrarySystem.Views
             switch (Saver.Status)
             {
                 case "Книги":
-                    query = "Select Books.Id, Books.Название_книги, Authors.Инициалы as Автор, Books.Год, Publishers.Наименование, Books.Количество from Books inner join Authors on Books.Автор = Authors.Id inner join Publishers on Books.Издательство = Publishers.Id";
+                    query = "Select Books.Id, Books.Название_книги as [Название книги], Authors.Инициалы as Автор, Books.Год, Publishers.Наименование, Books.Количество from Books inner join Authors on Books.Автор = Authors.Id inner join Publishers on Books.Издательство = Publishers.Id";
                     tableName = "Books";
                     BookAddUpg bookAdd = new BookAddUpg();
                     form = bookAdd;
@@ -94,7 +116,7 @@ namespace LibrarySystem.Views
                     form = reader;
                     break;
                 case "Выданные книги":
-                    query = "Select GivenBooks.Id, GivenBooks.Номер_Билета_Читателя, Books.Название_книги, Дата_сдачи from GivenBooks inner join Books on GivenBooks.Название_Книги = Books.Id";
+                    query = "Select GivenBooks.Id, GivenBooks.Номер_Билета_Читателя as [Номер билета читателя], Books.Название_книги as [Название книги], Дата_сдачи as [Дата сдачи] from GivenBooks inner join Books on GivenBooks.Название_Книги = Books.Id";
                     tableName = "GivenBooks";
                     GivenBookAddUpg givenBook = new GivenBookAddUpg();
                     btnAdd.Text = "Выдать";
@@ -122,6 +144,8 @@ namespace LibrarySystem.Views
                     break;
             }
             dc.ShowTable(query, dataGridView1);
+            dataGridView1.Columns[0].Visible = false;
+            if(form is ReaderAddUpg) { dataGridView1.Columns[0].Visible = true; }
         }
 
 

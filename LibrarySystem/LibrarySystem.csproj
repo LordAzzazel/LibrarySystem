@@ -47,6 +47,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>booklet.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -201,6 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Ico, Pic\librarian.png" />
+    <Content Include="booklet.ico" />
     <Content Include="Library.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

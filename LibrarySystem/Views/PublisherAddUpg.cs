@@ -27,7 +27,7 @@ namespace LibrarySystem.Views
             {
                 textBox1.Text = Saver.Values[1];
                 textBox2.Text = Saver.Values[2];
-                textBox4.Text = Saver.Values[3];
+                maskedTextBox1.Text = Saver.Values[3];
             }
         }
 
@@ -47,14 +47,14 @@ namespace LibrarySystem.Views
         {
             if (Saver.FormFunctionName == "Добавить")
             {
-                query = $"Insert into Publishers values(N'{ textBox1.Text }', N'{ textBox2.Text }', N'{ textBox4.Text}')";
+                query = $"Insert into Publishers values(N'{ textBox1.Text }', N'{ textBox2.Text }', N'{ maskedTextBox1.Text}')";
                 dc.AddorUpgr(query, "Добавлено");
                 Saver.FormEnabler();
                 Hide();
             }
             else if (Saver.FormFunctionName == "Изменить")
             {
-                query = $"Update Publishers Set Наименование = N'{ textBox1.Text }', Описание = N'{ textBox2.Text }', Год_создания = N'{ textBox4.Text}' Where Id = { Saver.Values[0]}";
+                query = $"Update Publishers Set Наименование = N'{ textBox1.Text }', Описание = N'{ textBox2.Text }', Год_создания = N'{ maskedTextBox1.Text}' Where Id = { Saver.Values[0]}";
                 dc.AddorUpgr(query, "Изменено");
                 Saver.FormEnabler();
                 Hide();

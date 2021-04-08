@@ -29,7 +29,7 @@ namespace LibrarySystem.Views
                 textBox2.Text = Saver.Values[2];
                 textBox3.Text = Saver.Values[3];
                 textBox4.Text = Saver.Values[4];
-                textBox5.Text = Saver.Values[5];
+                maskedTextBox1.Text = Saver.Values[5];
             }
         }
 
@@ -49,14 +49,14 @@ namespace LibrarySystem.Views
         {
             if (Saver.FormFunctionName == "Добавить")
             {
-                query = $"Insert into Authors values(N'{ textBox1.Text }', N'{ textBox2.Text }', N'{ textBox3.Text}', N'{ textBox4.Text }', { textBox5.Text })";
+                query = $"Insert into Authors values(N'{ textBox1.Text }', N'{ textBox2.Text }', N'{ textBox3.Text}', N'{ textBox4.Text }', { maskedTextBox1.Text })";
                 dc.AddorUpgr(query, "Добавлено");
                 Saver.FormEnabler();
                 Hide();
             }
             else if (Saver.FormFunctionName == "Изменить")
             {
-                query = $"Update Authors Set Фамилия = N'{ textBox1.Text }', Имя = N'{ textBox2.Text }', Отчество = N'{ textBox3.Text }', Инициалы = N'{ textBox4.Text }', Год_рождения = { textBox5.Text } Where Id = { Saver.Values[0]}";
+                query = $"Update Authors Set Фамилия = N'{ textBox1.Text }', Имя = N'{ textBox2.Text }', Отчество = N'{ textBox3.Text }', Инициалы = N'{ textBox4.Text }', Год_рождения = { maskedTextBox1.Text } Where Id = { Saver.Values[0]}";
                 dc.AddorUpgr(query, "Изменено");
                 Saver.FormEnabler();
                 Hide();

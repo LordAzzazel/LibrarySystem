@@ -35,7 +35,6 @@ namespace LibrarySystem.Views
             this.FormNameLabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.BookNameLabel = new System.Windows.Forms.Label();
             this.AuthorLabel = new System.Windows.Forms.Label();
             this.YearLabel = new System.Windows.Forms.Label();
@@ -44,6 +43,7 @@ namespace LibrarySystem.Views
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,15 +105,6 @@ namespace LibrarySystem.Views
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(169, 21);
             this.textBox1.TabIndex = 12;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
-            this.textBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.textBox3.Location = new System.Drawing.Point(111, 251);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(169, 21);
-            this.textBox3.TabIndex = 14;
             // 
             // BookNameLabel
             // 
@@ -203,12 +194,24 @@ namespace LibrarySystem.Views
             this.comboBox2.Size = new System.Drawing.Size(169, 23);
             this.comboBox2.TabIndex = 23;
             // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
+            this.maskedTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.maskedTextBox1.Location = new System.Drawing.Point(111, 251);
+            this.maskedTextBox1.Mask = "0000";
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(169, 21);
+            this.maskedTextBox1.TabIndex = 37;
+            this.maskedTextBox1.ValidatingType = typeof(int);
+            // 
             // BookAddUpg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(292, 447);
+            this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.NumberLabel);
@@ -217,7 +220,6 @@ namespace LibrarySystem.Views
             this.Controls.Add(this.AuthorLabel);
             this.Controls.Add(this.BookNameLabel);
             this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.FormNameLabel);
             this.Controls.Add(this.pictureBox1);
@@ -243,7 +245,6 @@ namespace LibrarySystem.Views
         private System.Windows.Forms.Label FormNameLabel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label BookNameLabel;
         private System.Windows.Forms.Label AuthorLabel;
         private System.Windows.Forms.Label YearLabel;
@@ -252,5 +253,6 @@ namespace LibrarySystem.Views
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
     }
 }
