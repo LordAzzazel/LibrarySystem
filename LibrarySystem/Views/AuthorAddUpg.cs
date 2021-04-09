@@ -86,7 +86,7 @@ namespace LibrarySystem.Views
             }
             else
             {
-                initial = $"{textBox2.Text[0]}. {textBox3.Text[0]}. {textBox1.Text}";
+                initial = $"{textBox2.Text[0]}.{textBox3.Text[0]}.{textBox1.Text}";
                 textBox4.Text = initial;
             }
         }

@@ -23,6 +23,7 @@ namespace LibrarySystem.Views
             tablePub = "Publishers";
         }
 
+
         private void BookAddUpg_Load(object sender, EventArgs e)
         {
             string authorsQuery = $"Select * from { tableAuth }";
@@ -49,6 +50,18 @@ namespace LibrarySystem.Views
             FormNameLabel.Text = Saver.FormName + " книги";
             btnAddUpg.Text = Saver.FormFunctionName;
         }
+        private void textBox5_Leave(object sender, EventArgs e)
+        {
+            if(int.Parse(textBox5.Text) <= 0)
+            {
+                btnAddUpg.Enabled = false;
+                MessageBox.Show("Количество книг не может быть ниже 1");
+            }
+            else
+            {
+                btnAddUpg.Enabled = true;
+            }
+        }
 
         private void btnAddUpg_Click(object sender, EventArgs e)
         {
@@ -62,6 +75,7 @@ namespace LibrarySystem.Views
                 itemId2 = dc.GetItemId(comboBox2.Text, "Наименование", tablePub);
                 if (Saver.FormFunctionName == "Добавить")
                 {
+
                     query = $"Insert into Books values(N'{ textBox1.Text }', { itemId }, { maskedTextBox1.Text}, { itemId2 }, { textBox5.Text })";
                     dc.AddorUpgr(query, "Добавлено");
                     Saver.FormEnabler();

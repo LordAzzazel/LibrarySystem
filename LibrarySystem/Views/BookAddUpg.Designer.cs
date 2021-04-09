@@ -144,7 +144,7 @@ namespace LibrarySystem.Views
             this.PublishHouseLabel.AutoSize = true;
             this.PublishHouseLabel.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
             this.PublishHouseLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.PublishHouseLabel.Location = new System.Drawing.Point(7, 294);
+            this.PublishHouseLabel.Location = new System.Drawing.Point(7, 331);
             this.PublishHouseLabel.Name = "PublishHouseLabel";
             this.PublishHouseLabel.Size = new System.Drawing.Size(88, 15);
             this.PublishHouseLabel.TabIndex = 20;
@@ -155,7 +155,7 @@ namespace LibrarySystem.Views
             this.NumberLabel.AutoSize = true;
             this.NumberLabel.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
             this.NumberLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.NumberLabel.Location = new System.Drawing.Point(7, 330);
+            this.NumberLabel.Location = new System.Drawing.Point(7, 291);
             this.NumberLabel.Name = "NumberLabel";
             this.NumberLabel.Size = new System.Drawing.Size(76, 15);
             this.NumberLabel.TabIndex = 21;
@@ -165,10 +165,11 @@ namespace LibrarySystem.Views
             // 
             this.textBox5.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
             this.textBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.textBox5.Location = new System.Drawing.Point(111, 327);
+            this.textBox5.Location = new System.Drawing.Point(111, 288);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(169, 21);
             this.textBox5.TabIndex = 16;
+            this.textBox5.Leave += new System.EventHandler(this.textBox5_Leave);
             // 
             // comboBox1
             // 
@@ -189,7 +190,7 @@ namespace LibrarySystem.Views
             this.comboBox2.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
             this.comboBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(111, 292);
+            this.comboBox2.Location = new System.Drawing.Point(111, 329);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(169, 23);
             this.comboBox2.TabIndex = 23;

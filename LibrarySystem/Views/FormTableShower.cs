@@ -14,7 +14,7 @@ namespace LibrarySystem.Views
     public partial class FormTableShower : Form
     {
         private string Adding = "Добавление", Updating = "Изменение";
-        private string query, tableName, idName;
+        private string query, tableName, idName, searchValues; 
         private Form form;
         private List<string> sells;
 
@@ -28,6 +28,7 @@ namespace LibrarySystem.Views
         }
         private void FormTableShower_Load(object sender, EventArgs e)
         {
+            dataGridView1.ReadOnly = true;
             Saver.TableShower = this;
             Checker();
         }
@@ -72,6 +73,14 @@ namespace LibrarySystem.Views
             {
                 idName = "Номер_билета";
             }
+            else if(Saver.Status == "Выданные книги")
+            {
+                string bookId = dc.GetItemId(dataGridView1.CurrentRow.Cells[1].Value.ToString(), "Название_книги", "Books");
+                int bookNumber = dc.GetBookQuontity(dataGridView1.CurrentRow.Cells[1].Value.ToString());
+                MessageBox.Show($"{dataGridView1.CurrentRow.Cells[1].Value},{bookId}, {bookNumber}");
+                dc.BookNumberChanger(bookNumber, int.Parse(bookId), Adding);
+
+            }
             query = $"Delete from {tableName} where {idName} = {dataGridView1.CurrentRow.Cells[0].Value}";
             dc.Delete(query);
             Checker();
@@ -79,18 +88,16 @@ namespace LibrarySystem.Views
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            /*if (textBox1.Text != string.Empty)
+            
+            try
             {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row.Cells[0].ToString().Contains(textBox1.Text))
-                    {
-                        row.Visible = true;
-                    }
-                    else
-                        row.Visible = false;
-                }
-            }*/
+                SearchValuesChecker();
+                (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = String.Format(searchValues);
+            }
+            catch (Exception)
+            {
+                
+            }
         }
 
         private void FormTableShower_FormClosed(object sender, FormClosedEventArgs e)
@@ -116,7 +123,7 @@ namespace LibrarySystem.Views
                     form = reader;
                     break;
                 case "Выданные книги":
-                    query = "Select GivenBooks.Id, GivenBooks.Номер_Билета_Читателя as [Номер билета читателя], Books.Название_книги as [Название книги], Дата_сдачи as [Дата сдачи] from GivenBooks inner join Books on GivenBooks.Название_Книги = Books.Id";
+                    query = "Select GivenBooks.Id, Books.Название_книги as [Название книги], GivenBooks.Дата_сдачи as [Дата сдачи], GivenBooks.Номер_Билета_Читателя as [Номер билета читателя], Readers.Фамилия, Readers.Имя, Readers.Отчество, Readers.Телефон from GivenBooks inner join Books on GivenBooks.Название_Книги = Books.Id inner join Readers on GivenBooks.Номер_Билета_Читателя = Readers.Номер_билета";
                     tableName = "GivenBooks";
                     GivenBookAddUpg givenBook = new GivenBookAddUpg();
                     btnAdd.Text = "Выдать";
@@ -156,6 +163,31 @@ namespace LibrarySystem.Views
                 sell.Add(dataGridView1.CurrentRow.Cells[i].Value.ToString());
             }
             Saver.Values = sell;
+        }
+
+        private void SearchValuesChecker()
+        {
+            switch (Saver.Status)
+            {
+                case "Книги":
+                    searchValues = $"[{dataGridView1.Columns[1].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[2].HeaderText}] LIKE '%{textBox1.Text}%' OR Convert([{dataGridView1.Columns[3].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[4].HeaderText}] LIKE '%{textBox1.Text}%' OR Convert([{dataGridView1.Columns[5].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%'";
+                    break;
+                case "Читатели":
+                    searchValues = $"Convert([{dataGridView1.Columns[0].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[1].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[2].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[3].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[4].HeaderText}] LIKE '%{textBox1.Text}%' OR Convert([{dataGridView1.Columns[5].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[6].HeaderText}] LIKE '%{textBox1.Text}%'";
+                    break;
+                case "Выданные книги":
+                    searchValues = $"[{dataGridView1.Columns[1].HeaderText}] LIKE '%{textBox1.Text}%' OR Convert([{dataGridView1.Columns[2].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%' OR Convert([{dataGridView1.Columns[3].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[4].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[5].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[6].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[7].HeaderText}] LIKE '%{textBox1.Text}%'";
+                    break;
+                case "Авторы":
+                    searchValues = $"[{dataGridView1.Columns[1].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[2].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[3].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[4].HeaderText}] LIKE '%{textBox1.Text}%' OR Convert([{dataGridView1.Columns[5].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%'";
+                    break;
+                case "Издательства":
+                    searchValues = $"[{dataGridView1.Columns[1].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[2].HeaderText}] LIKE '%{textBox1.Text}%' OR Convert([{dataGridView1.Columns[3].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%'";
+                    break;
+                case "Библиотекари":
+                    searchValues = $"[{dataGridView1.Columns[1].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[2].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[3].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[4].HeaderText}] LIKE '%{textBox1.Text}%'";
+                    break;
+            }
         }
 
 

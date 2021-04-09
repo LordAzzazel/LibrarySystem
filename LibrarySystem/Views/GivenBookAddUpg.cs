@@ -14,10 +14,8 @@ namespace LibrarySystem.Views
     public partial class GivenBookAddUpg : Form
     {
         private string query, tableReader, tableBook, readerId, bookId;
-
-
+        private int bookNumber;
         DatabaseConnection dc;
-
 
         public GivenBookAddUpg()
         {
@@ -34,10 +32,9 @@ namespace LibrarySystem.Views
             dc.FillCombobox(booksQuery, comboBox2, "Название_книги");
             if (Saver.FormName == "Продление")
             {
-                ReaderNumberLabel.Text = "Номер читателя:";
-                comboBox1.Text = Saver.Values[1];
-                comboBox2.Text = Saver.Values[2];
-                dateTimePicker1.Text = Saver.Values[3];
+                comboBox1.Text = Saver.Values[3];
+                comboBox2.Text = Saver.Values[1];
+                dateTimePicker1.Text = Saver.Values[2];
                 comboBox1.Enabled = false;
                 comboBox2.Enabled = false;
             }
@@ -64,11 +61,21 @@ namespace LibrarySystem.Views
                 bookId = dc.GetItemId(comboBox2.Text, "Название_книги", tableBook);
                 if (Saver.FormFunctionName == "Выдать")
                 {
-                    readerId = dc.GetItemId(comboBox1.Text, "Имя", tableReader);
-                    query = $"Insert into GivenBooks values(N'{ readerId }', N'{ bookId }', '{ dateTimePicker1.Value }')";
-                    dc.AddorUpgr(query, "Добавлено");
-                    Saver.FormEnabler();
-                    Hide();
+                    bookNumber = dc.GetBookQuontity(comboBox2.Text);
+                    if (bookNumber <= 0)
+                    {
+                        MessageBox.Show("Данной книги нет в наличии");
+                    }
+                    else
+                    {
+                        readerId = dc.GetItemId(comboBox1.Text, "Имя", tableReader);
+                        query = $"Insert into GivenBooks values(N'{ readerId }', N'{ bookId }', '{ dateTimePicker1.Value }')";
+                        dc.BookNumberChanger(bookNumber, int.Parse(bookId));
+                        dc.AddorUpgr(query, "Добавлено");
+                        Saver.FormEnabler();
+                        Hide();
+                    }
+
                 }
                 else if (Saver.FormFunctionName == "Продлить")
                 {

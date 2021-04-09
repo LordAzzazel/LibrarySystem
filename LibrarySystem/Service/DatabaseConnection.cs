@@ -117,5 +117,48 @@ namespace LibrarySystem.Service
             return null;
         }
         
+        public int GetBookQuontity(string bookName)
+        {
+            string query = $"Select * from Books Where Название_книги = N'{bookName}'";
+
+            int bookNumber;
+            sqlConnection.Open();
+            SqlCommand command = new SqlCommand(query, sqlConnection);
+            SqlDataReader reader = command.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    bookNumber = reader.GetInt32(5);
+                    sqlConnection.Close();
+                    return bookNumber;
+                }
+            }
+            sqlConnection.Close();
+            reader.Close();
+            return 0;
+          
+        }
+
+        public void BookNumberChanger(int bookQuontity, int bookId)
+        {
+            int givenBook = bookQuontity - 1;
+            string query = $"Update Books Set Количество = { givenBook } Where Id = { bookId }";
+            sqlConnection.Open();
+            SqlDataAdapter SDA = new SqlDataAdapter(query, sqlConnection);
+            SDA.SelectCommand.ExecuteNonQuery();
+            sqlConnection.Close();
+        }
+
+        public void BookNumberChanger(int bookQuontity, int bookId, string Add)
+        {
+            int givenBook = bookQuontity + 1;
+            string query = $"Update Books Set Количество = { givenBook } Where Id = { bookId }";
+            sqlConnection.Open();
+            SqlDataAdapter SDA = new SqlDataAdapter(query, sqlConnection);
+            SDA.SelectCommand.ExecuteNonQuery();
+            sqlConnection.Close();
+        }
     }
 }
