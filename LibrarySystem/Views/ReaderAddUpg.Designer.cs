@@ -46,6 +46,8 @@ namespace LibrarySystem.Views
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,7 +56,7 @@ namespace LibrarySystem.Views
             this.YearLabel.AutoSize = true;
             this.YearLabel.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
             this.YearLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.YearLabel.Location = new System.Drawing.Point(6, 328);
+            this.YearLabel.Location = new System.Drawing.Point(6, 364);
             this.YearLabel.Name = "YearLabel";
             this.YearLabel.Size = new System.Drawing.Size(98, 15);
             this.YearLabel.TabIndex = 49;
@@ -65,7 +67,7 @@ namespace LibrarySystem.Views
             this.PhoneLabel.AutoSize = true;
             this.PhoneLabel.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
             this.PhoneLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.PhoneLabel.Location = new System.Drawing.Point(6, 292);
+            this.PhoneLabel.Location = new System.Drawing.Point(6, 328);
             this.PhoneLabel.Name = "PhoneLabel";
             this.PhoneLabel.Size = new System.Drawing.Size(60, 15);
             this.PhoneLabel.TabIndex = 48;
@@ -112,6 +114,7 @@ namespace LibrarySystem.Views
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(169, 21);
             this.textBox3.TabIndex = 42;
+            this.textBox3.Leave += new System.EventHandler(this.textBox3_Leave);
             // 
             // textBox2
             // 
@@ -121,6 +124,7 @@ namespace LibrarySystem.Views
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(169, 21);
             this.textBox2.TabIndex = 41;
+            this.textBox2.Leave += new System.EventHandler(this.textBox2_Leave);
             // 
             // textBox1
             // 
@@ -130,6 +134,7 @@ namespace LibrarySystem.Views
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(169, 21);
             this.textBox1.TabIndex = 40;
+            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave_1);
             // 
             // FormNameLabel
             // 
@@ -159,7 +164,7 @@ namespace LibrarySystem.Views
             this.btnAddUpg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddUpg.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnAddUpg.ForeColor = System.Drawing.Color.White;
-            this.btnAddUpg.Location = new System.Drawing.Point(12, 399);
+            this.btnAddUpg.Location = new System.Drawing.Point(12, 435);
             this.btnAddUpg.Name = "btnAddUpg";
             this.btnAddUpg.Size = new System.Drawing.Size(268, 36);
             this.btnAddUpg.TabIndex = 37;
@@ -186,7 +191,7 @@ namespace LibrarySystem.Views
             this.AddressLabel.AutoSize = true;
             this.AddressLabel.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
             this.AddressLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.AddressLabel.Location = new System.Drawing.Point(9, 364);
+            this.AddressLabel.Location = new System.Drawing.Point(9, 400);
             this.AddressLabel.Name = "AddressLabel";
             this.AddressLabel.Size = new System.Drawing.Size(46, 15);
             this.AddressLabel.TabIndex = 51;
@@ -196,14 +201,14 @@ namespace LibrarySystem.Views
             // 
             this.textBox6.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
             this.textBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.textBox6.Location = new System.Drawing.Point(110, 361);
+            this.textBox6.Location = new System.Drawing.Point(110, 397);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(169, 21);
             this.textBox6.TabIndex = 50;
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(110, 328);
+            this.dateTimePicker1.Location = new System.Drawing.Point(110, 364);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(169, 20);
             this.dateTimePicker1.TabIndex = 52;
@@ -213,18 +218,40 @@ namespace LibrarySystem.Views
             // 
             this.maskedTextBox1.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
             this.maskedTextBox1.ForeColor = System.Drawing.Color.Black;
-            this.maskedTextBox1.Location = new System.Drawing.Point(110, 286);
+            this.maskedTextBox1.Location = new System.Drawing.Point(110, 322);
             this.maskedTextBox1.Mask = "8(999) 000-00-00 ";
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(169, 21);
             this.maskedTextBox1.TabIndex = 53;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.label1.Location = new System.Drawing.Point(6, 288);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 15);
+            this.label1.TabIndex = 55;
+            this.label1.Text = "Инициалы:";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
+            this.textBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.textBox4.Location = new System.Drawing.Point(110, 285);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(169, 21);
+            this.textBox4.TabIndex = 54;
             // 
             // ReaderAddUpg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(292, 447);
+            this.ClientSize = new System.Drawing.Size(292, 493);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.AddressLabel);
@@ -272,5 +299,7 @@ namespace LibrarySystem.Views
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox4;
     }
 }

@@ -52,7 +52,7 @@ namespace LibrarySystem.Views
             this.YearLabel.AutoSize = true;
             this.YearLabel.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
             this.YearLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.YearLabel.Location = new System.Drawing.Point(6, 328);
+            this.YearLabel.Location = new System.Drawing.Point(5, 334);
             this.YearLabel.Name = "YearLabel";
             this.YearLabel.Size = new System.Drawing.Size(89, 15);
             this.YearLabel.TabIndex = 35;
@@ -195,7 +195,7 @@ namespace LibrarySystem.Views
             // 
             this.maskedTextBox1.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
             this.maskedTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.maskedTextBox1.Location = new System.Drawing.Point(111, 323);
+            this.maskedTextBox1.Location = new System.Drawing.Point(110, 329);
             this.maskedTextBox1.Mask = "0000";
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(169, 21);

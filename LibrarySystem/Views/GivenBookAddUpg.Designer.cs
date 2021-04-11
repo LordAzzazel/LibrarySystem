@@ -85,9 +85,9 @@ namespace LibrarySystem.Views
             this.ReaderNumberLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.ReaderNumberLabel.Location = new System.Drawing.Point(7, 186);
             this.ReaderNumberLabel.Name = "ReaderNumberLabel";
-            this.ReaderNumberLabel.Size = new System.Drawing.Size(91, 15);
+            this.ReaderNumberLabel.Size = new System.Drawing.Size(68, 15);
             this.ReaderNumberLabel.TabIndex = 31;
-            this.ReaderNumberLabel.Text = "Номер билета:";
+            this.ReaderNumberLabel.Text = "Инициалы:";
             // 
             // FormNameLabel
             // 

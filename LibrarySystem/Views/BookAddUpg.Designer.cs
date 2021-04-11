@@ -169,6 +169,7 @@ namespace LibrarySystem.Views
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(169, 21);
             this.textBox5.TabIndex = 16;
+            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
             this.textBox5.Leave += new System.EventHandler(this.textBox5_Leave);
             // 
             // comboBox1

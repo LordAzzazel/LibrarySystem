@@ -95,7 +95,6 @@ namespace LibrarySystem.Service
             string query = $"Select * from { tableName } Where { itemName } = N'{ item }'";
             sqlConnection.Open();
             SqlCommand command = new SqlCommand(query, sqlConnection);
-
             SqlDataReader reader = command.ExecuteReader();
 
             if (reader.HasRows)
@@ -159,6 +158,25 @@ namespace LibrarySystem.Service
             SqlDataAdapter SDA = new SqlDataAdapter(query, sqlConnection);
             SDA.SelectCommand.ExecuteNonQuery();
             sqlConnection.Close();
+        }
+
+        public bool isBookGiven(string bookid, string readerid)
+        {
+            string query = $"Select * from GivenBooks Where Название_Книги = { bookid } and Номер_Билета_Читателя = { readerid }";
+            sqlConnection.Open();
+            SqlDataAdapter sda = new SqlDataAdapter(query, sqlConnection);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                sqlConnection.Close();
+                return true;
+            }
+            else
+            {
+                sqlConnection.Close();
+                return false;
+            }
         }
     }
 }

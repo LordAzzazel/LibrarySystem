@@ -36,5 +36,17 @@ namespace LibrarySystem.Service
             TableShower.Enabled = true;
             Values.Clear();
         }
+
+        public static bool ComboboxChecker(ComboBox cb)
+        {
+            if (cb.Items.Contains(cb.Text))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
