@@ -209,6 +209,8 @@ namespace LibrarySystem.Views
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(110, 364);
+            this.dateTimePicker1.MaxDate = new System.DateTime(2021, 4, 12, 0, 0, 0, 0);
+            this.dateTimePicker1.MinDate = new System.DateTime(1930, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(169, 20);
             this.dateTimePicker1.TabIndex = 52;

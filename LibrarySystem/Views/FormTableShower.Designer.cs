@@ -36,6 +36,7 @@ namespace LibrarySystem.Views
             this.btnDel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnNeedToReturn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -119,11 +120,28 @@ namespace LibrarySystem.Views
             this.textBox1.TabIndex = 5;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
+            // btnNeedToReturn
+            // 
+            this.btnNeedToReturn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNeedToReturn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.btnNeedToReturn.FlatAppearance.BorderSize = 0;
+            this.btnNeedToReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNeedToReturn.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btnNeedToReturn.ForeColor = System.Drawing.Color.White;
+            this.btnNeedToReturn.Location = new System.Drawing.Point(15, 351);
+            this.btnNeedToReturn.Name = "btnNeedToReturn";
+            this.btnNeedToReturn.Size = new System.Drawing.Size(181, 63);
+            this.btnNeedToReturn.TabIndex = 6;
+            this.btnNeedToReturn.Text = "Просроченные";
+            this.btnNeedToReturn.UseVisualStyleBackColor = false;
+            this.btnNeedToReturn.Click += new System.EventHandler(this.btnNeedToReturn_Click);
+            // 
             // FormTableShower
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(694, 426);
+            this.Controls.Add(this.btnNeedToReturn);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnDel);
@@ -150,5 +168,6 @@ namespace LibrarySystem.Views
         private System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnNeedToReturn;
     }
 }

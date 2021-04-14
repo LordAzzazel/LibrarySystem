@@ -15,6 +15,7 @@ namespace LibrarySystem.Views
     {
         private string query, tableReader, tableBook, readerId, bookId;
         private int bookNumber;
+        private DateTime today;
         DatabaseConnection dc;
 
         public GivenBookAddUpg()
@@ -26,6 +27,8 @@ namespace LibrarySystem.Views
         }
         private void GivenBookAddUpg_Load(object sender, EventArgs e)
         {
+            today = DateTime.Today;
+            dateTimePicker1.MaxDate = new DateTime(today.Year, today.Month + 1, 31);
             string readerssQuery = $"Select * from { tableReader }";
             string booksQuery = $"Select * from { tableBook }";
             dc.FillCombobox(readerssQuery, comboBox1, "Инициалы");
@@ -53,6 +56,7 @@ namespace LibrarySystem.Views
         }
         private void btnAddUpg_Click(object sender, EventArgs e)
         {
+
             if (string.IsNullOrEmpty(comboBox1.Text) || string.IsNullOrEmpty(comboBox2.Text))
             {
                 MessageBox.Show("Не все поля заполнены");

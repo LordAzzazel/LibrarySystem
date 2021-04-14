@@ -155,6 +155,7 @@ namespace LibrarySystem
             this.PasswordBox.Location = new System.Drawing.Point(26, 6);
             this.PasswordBox.Multiline = true;
             this.PasswordBox.Name = "PasswordBox";
+            this.PasswordBox.PasswordChar = '*';
             this.PasswordBox.Size = new System.Drawing.Size(242, 25);
             this.PasswordBox.TabIndex = 5;
             this.PasswordBox.UseSystemPasswordChar = true;

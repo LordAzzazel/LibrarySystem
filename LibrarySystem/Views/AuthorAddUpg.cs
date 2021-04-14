@@ -15,6 +15,7 @@ namespace LibrarySystem.Views
     {
         private string query, initial;
         DatabaseConnection dc;
+        DateTime today;
         public AuthorAddUpg()
         {
             InitializeComponent();
@@ -47,19 +48,40 @@ namespace LibrarySystem.Views
 
         private void btnAddUpg_Click(object sender, EventArgs e)
         {
-            if (Saver.FormFunctionName == "Добавить")
+            if (maskedTextBox1.MaskCompleted == false)
             {
-                query = $"Insert into Authors values(N'{ textBox1.Text }', N'{ textBox2.Text }', N'{ textBox3.Text}', N'{ textBox4.Text }', { maskedTextBox1.Text })";
-                dc.AddorUpgr(query, "Добавлено");
-                Saver.FormEnabler();
-                Hide();
+                MessageBox.Show("Заполните поле год до конца");
             }
-            else if (Saver.FormFunctionName == "Изменить")
+            today = DateTime.Today;
+            if (maskedTextBox1.MaskCompleted)
             {
-                query = $"Update Authors Set Фамилия = N'{ textBox1.Text }', Имя = N'{ textBox2.Text }', Отчество = N'{ textBox3.Text }', Инициалы = N'{ textBox4.Text }', Год_рождения = { maskedTextBox1.Text } Where Id = { Saver.Values[0]}";
-                dc.AddorUpgr(query, "Изменено");
-                Saver.FormEnabler();
-                Hide();
+                if (int.Parse(maskedTextBox1.Text) < 800)
+                {
+                    MessageBox.Show("Слишком ранняя дата");
+                    return;
+                }
+                else if (today.Year < int.Parse(maskedTextBox1.Text))
+                {
+                    MessageBox.Show("Данный год ещё даже не произошёл");
+                    return;
+                }
+                else
+                {
+                    if (Saver.FormFunctionName == "Добавить")
+                    {
+                        query = $"Insert into Authors values(N'{ textBox1.Text }', N'{ textBox2.Text }', N'{ textBox3.Text}', N'{ textBox4.Text }', { maskedTextBox1.Text })";
+                        dc.AddorUpgr(query, "Добавлено");
+                        Saver.FormEnabler();
+                        Hide();
+                    }
+                    else if (Saver.FormFunctionName == "Изменить")
+                    {
+                        query = $"Update Authors Set Фамилия = N'{ textBox1.Text }', Имя = N'{ textBox2.Text }', Отчество = N'{ textBox3.Text }', Инициалы = N'{ textBox4.Text }', Год_рождения = { maskedTextBox1.Text } Where Id = { Saver.Values[0]}";
+                        dc.AddorUpgr(query, "Изменено");
+                        Saver.FormEnabler();
+                        Hide();
+                    }
+                }
             }
         }
 

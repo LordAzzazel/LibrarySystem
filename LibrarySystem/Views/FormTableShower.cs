@@ -17,7 +17,7 @@ namespace LibrarySystem.Views
         private string query, tableName, idName, searchValues; 
         private Form form;
         private List<string> sells;
-
+        private DateTime today;
         public Form Form { get; set; }
 
         DatabaseConnection dc = new DatabaseConnection(); 
@@ -28,6 +28,7 @@ namespace LibrarySystem.Views
         }
         private void FormTableShower_Load(object sender, EventArgs e)
         {
+            btnNeedToReturn.Visible = false;
             dataGridView1.ReadOnly = true;
             Saver.TableShower = this;
             Checker();
@@ -77,7 +78,6 @@ namespace LibrarySystem.Views
             {
                 string bookId = dc.GetItemId(dataGridView1.CurrentRow.Cells[1].Value.ToString(), "Название_книги", "Books");
                 int bookNumber = dc.GetBookQuontity(dataGridView1.CurrentRow.Cells[1].Value.ToString());
-                MessageBox.Show($"{dataGridView1.CurrentRow.Cells[1].Value},{bookId}, {bookNumber}");
                 dc.BookNumberChanger(bookNumber, int.Parse(bookId), Adding);
 
             }
@@ -97,6 +97,22 @@ namespace LibrarySystem.Views
             catch (Exception)
             {
                 
+            }
+        }
+
+        private void btnNeedToReturn_Click(object sender, EventArgs e)
+        {
+            today = DateTime.Today;
+            if(btnNeedToReturn.Text == "Просроченные")
+            {
+                query = $"Select GivenBooks.Id, Books.Название_книги as [Название книги], GivenBooks.Дата_сдачи as [Дата сдачи], GivenBooks.Номер_Билета_Читателя as [Номер билета читателя], Readers.Фамилия, Readers.Имя, Readers.Отчество, Readers.Телефон from GivenBooks inner join Books on GivenBooks.Название_Книги = Books.Id inner join Readers on GivenBooks.Номер_Билета_Читателя = Readers.Номер_билета Where GivenBooks.Дата_сдачи < '{today.ToString("dd/MM/yyyy")}'";
+                dc.ShowTable(query, dataGridView1);
+                btnNeedToReturn.Text = "Отменить";
+            }
+            else if(btnNeedToReturn.Text == "Отменить")
+            {
+                Checker();
+                btnNeedToReturn.Text = "Просроченные";
             }
         }
 
@@ -125,6 +141,7 @@ namespace LibrarySystem.Views
                 case "Выданные книги":
                     query = "Select GivenBooks.Id, Books.Название_книги as [Название книги], GivenBooks.Дата_сдачи as [Дата сдачи], GivenBooks.Номер_Билета_Читателя as [Номер билета читателя], Readers.Фамилия, Readers.Имя, Readers.Отчество, Readers.Телефон from GivenBooks inner join Books on GivenBooks.Название_Книги = Books.Id inner join Readers on GivenBooks.Номер_Билета_Читателя = Readers.Номер_билета";
                     tableName = "GivenBooks";
+                    btnNeedToReturn.Visible = true;
                     GivenBookAddUpg givenBook = new GivenBookAddUpg();
                     btnAdd.Text = "Выдать";
                     btnUpd.Text = "Продлить";

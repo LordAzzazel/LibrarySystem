@@ -15,6 +15,7 @@ namespace LibrarySystem.Views
     {
         private string query, tableAuth, tablePub, itemId, itemId2;
         DatabaseConnection dc;
+        DateTime today;
         public BookAddUpg()
         {
             InitializeComponent();
@@ -68,52 +69,67 @@ namespace LibrarySystem.Views
             {
                 return;
             }
+            else if (int.Parse(textBox5.Text) <= 0)
+            {
+                btnAddUpg.Enabled = false;
+                MessageBox.Show("Книг должно быть больше 0");
+            }
             else
             {
-                if (int.Parse(textBox5.Text) <= 0)
-                {
-                    btnAddUpg.Enabled = false;
-                    MessageBox.Show("Количество книг не может быть ниже 1");
-                }
-                else
-                {
-                    btnAddUpg.Enabled = true;
-                }
+                btnAddUpg.Enabled = true;
             }
         }
 
         private void btnAddUpg_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(comboBox1.Text) || string.IsNullOrEmpty(comboBox2.Text))
+            if (maskedTextBox1.MaskCompleted == false)
+            {
+                MessageBox.Show("Заполните поле год до конца");
+                return;
+            }
+            else if (string.IsNullOrEmpty(comboBox1.Text) || string.IsNullOrEmpty(comboBox2.Text))
             {
                 return;
             }
-            else
+            today = DateTime.Today;
+            if (maskedTextBox1.MaskCompleted)
             {
-                bool check1 = Saver.ComboboxChecker(comboBox1);
-                bool check2 = Saver.ComboboxChecker(comboBox2);
-                itemId = dc.GetItemId(comboBox1.Text, "Инициалы", tableAuth);
-                itemId2 = dc.GetItemId(comboBox2.Text, "Наименование", tablePub);
-                if (Saver.FormFunctionName == "Добавить" && check1 && check2)
+                if (int.Parse(maskedTextBox1.Text) < 800)
                 {
-                    query = $"Insert into Books values(N'{ textBox1.Text }', { itemId }, { maskedTextBox1.Text}, { itemId2 }, { textBox5.Text })";
-                    dc.AddorUpgr(query, "Добавлено");
-                    Saver.FormEnabler();
-                    Hide();
+                    MessageBox.Show("Слишком ранняя дата");
+                    return;
                 }
-                else if (Saver.FormFunctionName == "Изменить" && check1 && check2)
+                else if (today.Year < int.Parse(maskedTextBox1.Text))
                 {
-                    query = $"Update Books Set Название_книги = N'{ textBox1.Text }', Автор = { itemId }, Год = { maskedTextBox1.Text}, Издательство = { itemId2 }, Количество = { textBox5.Text} Where Id = { Saver.Values[0]}";
-                    dc.AddorUpgr(query, "Изменено");
-                    Saver.FormEnabler();
-                    Hide();
+                    MessageBox.Show("Данный год ещё даже не произошёл");
+                    return;
                 }
                 else
                 {
-                    MessageBox.Show("Введите существующие значения");
+                    bool check1 = Saver.ComboboxChecker(comboBox1);
+                    bool check2 = Saver.ComboboxChecker(comboBox2);
+                    itemId = dc.GetItemId(comboBox1.Text, "Инициалы", tableAuth);
+                    itemId2 = dc.GetItemId(comboBox2.Text, "Наименование", tablePub);
+                    if (Saver.FormFunctionName == "Добавить" && check1 && check2)
+                    {
+                        query = $"Insert into Books values(N'{ textBox1.Text }', { itemId }, { maskedTextBox1.Text}, { itemId2 }, { textBox5.Text })";
+                        dc.AddorUpgr(query, "Добавлено");
+                        Saver.FormEnabler();
+                        Hide();
+                    }
+                    else if (Saver.FormFunctionName == "Изменить" && check1 && check2)
+                    {
+                        query = $"Update Books Set Название_книги = N'{ textBox1.Text }', Автор = { itemId }, Год = { maskedTextBox1.Text}, Издательство = { itemId2 }, Количество = { textBox5.Text} Where Id = { Saver.Values[0]}";
+                        dc.AddorUpgr(query, "Изменено");
+                        Saver.FormEnabler();
+                        Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Введите существующие значения");
+                    }
                 }
             }
-
         }
     }
 }

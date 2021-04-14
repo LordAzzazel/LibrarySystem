@@ -13,8 +13,10 @@ namespace LibrarySystem.Views
 {
     public partial class ReaderAddUpg : Form
     {
-        private string query, initial;
+        private string query, initial, checkQuery;
         DatabaseConnection dc;
+        DateTime today;
+
         public ReaderAddUpg()
         {
             InitializeComponent();
@@ -23,6 +25,7 @@ namespace LibrarySystem.Views
 
         private void ReaderAddUpg_Load(object sender, EventArgs e)
         {
+            today = DateTime.Today;
             if (Saver.FormName == "Изменение")
             {
                 textBox1.Text = Saver.Values[1];
@@ -49,7 +52,19 @@ namespace LibrarySystem.Views
         }
         private void btnAddUpg_Click(object sender, EventArgs e)
         {
-            if (Saver.FormFunctionName == "Добавить")
+            checkQuery = $"Select Телефон from Readers Where Телефон = '{ maskedTextBox1.Text }'";
+            bool isExist = dc.isExist(checkQuery);
+            if (dateTimePicker1.Value.Year >= today.Year - 14)
+            {
+                MessageBox.Show("Данный человек слишком молод, чтобы быть читателем");
+                return;
+            }
+            else if (isExist)
+            {
+                MessageBox.Show("Наличие одинакового номера телефона у 2 человек невозможно");
+                return;
+            }
+            else if (Saver.FormFunctionName == "Добавить")
             {
                 query = $"Insert into Readers values(N'{ textBox1.Text }', N'{ textBox2.Text }', N'{ textBox3.Text}', N'{textBox4.Text}','{ maskedTextBox1.Text }', '{ dateTimePicker1.Value }', N'{ textBox6.Text }')";
                 dc.AddorUpgr(query, "Добавлено");

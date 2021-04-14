@@ -29,7 +29,10 @@ namespace LibrarySystem.Service
                 {
                     while (reader.Read())
                     {
-                        return reader.GetString(4);
+                        string role = reader.GetString(4);
+                        reader.Close();
+                        sqlConnection.Close();
+                        return role;
                     }
                 }
                 else
@@ -38,6 +41,7 @@ namespace LibrarySystem.Service
                     return null;
                 }
                 reader.Close();
+                sqlConnection.Close();
                 return null;
             }
 
@@ -54,14 +58,17 @@ namespace LibrarySystem.Service
 
         public void AddorUpgr(string query, string add)
         {
+
             sqlConnection.Open();
             SqlDataAdapter SDA = new SqlDataAdapter(query, sqlConnection);
             SDA.SelectCommand.ExecuteNonQuery();
             MessageBox.Show(add);
             sqlConnection.Close();
+
         }
         public void Delete(string query)
         {
+
             const string message = "Вы уверены?";
             const string caption = "Удаление";
             var result = MessageBox.Show(message, caption,
@@ -163,6 +170,24 @@ namespace LibrarySystem.Service
         public bool isBookGiven(string bookid, string readerid)
         {
             string query = $"Select * from GivenBooks Where Название_Книги = { bookid } and Номер_Билета_Читателя = { readerid }";
+            sqlConnection.Open();
+            SqlDataAdapter sda = new SqlDataAdapter(query, sqlConnection);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                sqlConnection.Close();
+                return true;
+            }
+            else
+            {
+                sqlConnection.Close();
+                return false;
+            }
+        }
+
+        public bool isExist(string query)
+        {
             sqlConnection.Open();
             SqlDataAdapter sda = new SqlDataAdapter(query, sqlConnection);
             DataTable dt = new DataTable();
