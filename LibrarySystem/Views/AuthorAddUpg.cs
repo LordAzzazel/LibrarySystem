@@ -65,6 +65,10 @@ namespace LibrarySystem.Views
                     MessageBox.Show("Данный год ещё даже не произошёл");
                     return;
                 }
+                else if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text))
+                {
+                    MessageBox.Show("Заполните все поля");
+                }
                 else
                 {
                     if (Saver.FormFunctionName == "Добавить")
@@ -104,6 +108,7 @@ namespace LibrarySystem.Views
         {
             if(string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text))
             {
+                MessageBox.Show("Заполните все поля");
                 return;
             }
             else

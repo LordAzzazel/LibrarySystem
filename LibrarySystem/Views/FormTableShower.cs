@@ -14,7 +14,7 @@ namespace LibrarySystem.Views
     public partial class FormTableShower : Form
     {
         private string Adding = "Добавление", Updating = "Изменение";
-        private string query, tableName, idName, searchValues; 
+        private string query, tableName, idName, searchValues, delCheckQuery; 
         private Form form;
         private List<string> sells;
         private DateTime today;
@@ -70,7 +70,18 @@ namespace LibrarySystem.Views
         private void btnDel_Click(object sender, EventArgs e)
         {
             idName = "Id";
-            if(form is ReaderAddUpg)
+            SearchValuesChecker();
+            bool isExist = dc.isExist(delCheckQuery);
+            if(form is GivenBookAddUpg || form is LibrarianAddUpg)
+            {
+                isExist = false;
+            }
+            else if (isExist)
+            {
+                MessageBox.Show("Данное значение связано и не может быть удалено");
+                return;
+            }
+            else if (form is ReaderAddUpg)
             {
                 idName = "Номер_билета";
             }
@@ -105,7 +116,14 @@ namespace LibrarySystem.Views
             today = DateTime.Today;
             if(btnNeedToReturn.Text == "Просроченные")
             {
-                query = $"Select GivenBooks.Id, Books.Название_книги as [Название книги], GivenBooks.Дата_сдачи as [Дата сдачи], GivenBooks.Номер_Билета_Читателя as [Номер билета читателя], Readers.Фамилия, Readers.Имя, Readers.Отчество, Readers.Телефон from GivenBooks inner join Books on GivenBooks.Название_Книги = Books.Id inner join Readers on GivenBooks.Номер_Билета_Читателя = Readers.Номер_билета Where GivenBooks.Дата_сдачи < '{today.ToString("dd/MM/yyyy")}'";
+                string date = today.ToString("MM/dd/yyyy");
+                query = $"Select GivenBooks.Id, Books.Название_книги as [Название книги], GivenBooks.Дата_сдачи as [Дата сдачи], GivenBooks.Номер_Билета_Читателя as [Номер билета читателя], Readers.Фамилия, Readers.Имя, Readers.Отчество, Readers.Телефон from GivenBooks inner join Books on GivenBooks.Название_Книги = Books.Id inner join Readers on GivenBooks.Номер_Билета_Читателя = Readers.Номер_билета Where GivenBooks.Дата_сдачи < '{date}'";
+                bool isExist = dc.isExist(query);
+                if (isExist == false)
+                {
+                    MessageBox.Show("Нет просроченных книг");
+                    return;
+                }
                 dc.ShowTable(query, dataGridView1);
                 btnNeedToReturn.Text = "Отменить";
             }
@@ -188,21 +206,27 @@ namespace LibrarySystem.Views
             {
                 case "Книги":
                     searchValues = $"[{dataGridView1.Columns[1].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[2].HeaderText}] LIKE '%{textBox1.Text}%' OR Convert([{dataGridView1.Columns[3].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[4].HeaderText}] LIKE '%{textBox1.Text}%' OR Convert([{dataGridView1.Columns[5].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%'";
+                    delCheckQuery = $"Select * from GivenBooks Where Название_Книги = { dataGridView1.CurrentRow.Cells[0].Value}";
                     break;
                 case "Читатели":
                     searchValues = $"Convert([{dataGridView1.Columns[0].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[1].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[2].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[3].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[4].HeaderText}] LIKE '%{textBox1.Text}%' OR Convert([{dataGridView1.Columns[5].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%' OR Convert([{dataGridView1.Columns[6].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%' Or Convert([{dataGridView1.Columns[7].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%'";
+                    delCheckQuery = $"Select * from GivenBooks Where Номер_Билета_Читателя = { dataGridView1.CurrentRow.Cells[0].Value }";
                     break;
                 case "Выданные книги":
                     searchValues = $"[{dataGridView1.Columns[1].HeaderText}] LIKE '%{textBox1.Text}%' OR Convert([{dataGridView1.Columns[2].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%' OR Convert([{dataGridView1.Columns[3].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[4].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[5].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[6].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[7].HeaderText}] LIKE '%{textBox1.Text}%'";
+                    delCheckQuery = $"Select * from GivenBooks";
                     break;
                 case "Авторы":
                     searchValues = $"[{dataGridView1.Columns[1].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[2].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[3].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[4].HeaderText}] LIKE '%{textBox1.Text}%' OR Convert([{dataGridView1.Columns[5].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%'";
+                    delCheckQuery = $"Select * from Books Where Автор = {dataGridView1.CurrentRow.Cells[0].Value}";
                     break;
                 case "Издательства":
                     searchValues = $"[{dataGridView1.Columns[1].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[2].HeaderText}] LIKE '%{textBox1.Text}%' OR Convert([{dataGridView1.Columns[3].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%'";
+                    delCheckQuery = $"Select * from Books Where Издательство = {dataGridView1.CurrentRow.Cells[0].Value}";
                     break;
                 case "Библиотекари":
                     searchValues = $"[{dataGridView1.Columns[1].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[2].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[3].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[4].HeaderText}] LIKE '%{textBox1.Text}%'";
+                    delCheckQuery = $"Select * from Users";
                     break;
             }
         }

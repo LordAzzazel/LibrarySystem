@@ -47,9 +47,13 @@ namespace LibrarySystem.Views
 
         private void btnAddUpg_Click(object sender, EventArgs e)
         {
-            if(Saver.FormFunctionName == "Добавить")
+            if (string.IsNullOrEmpty(LoginTxt.Text) || string.IsNullOrEmpty(PasBox.Text) || string.IsNullOrEmpty(UserNameTxt.Text))
             {
-                query = $"Insert into Users values(N'{ UserNameTxt.Text }', N'{ LoginTxt.Text }', N'{ PasLabel.Text}', N'Библиотекарь')";
+                MessageBox.Show("Заполните все поля");
+            }
+            else if (Saver.FormFunctionName == "Добавить")
+            {
+                query = $"Insert into Users values(N'{ UserNameTxt.Text }', N'{ LoginTxt.Text }', N'{ PasBox.Text}', N'Библиотекарь')";
                 dc.AddorUpgr(query, "Добавлено");
                 Saver.FormEnabler();
                 Hide();

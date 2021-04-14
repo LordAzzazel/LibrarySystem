@@ -87,8 +87,9 @@ namespace LibrarySystem.Views
                 MessageBox.Show("Заполните поле год до конца");
                 return;
             }
-            else if (string.IsNullOrEmpty(comboBox1.Text) || string.IsNullOrEmpty(comboBox2.Text))
+            else if (string.IsNullOrEmpty(comboBox1.Text) || string.IsNullOrEmpty(comboBox2.Text) || string.IsNullOrEmpty(textBox1.Text))
             {
+                MessageBox.Show("Заполните все поля");
                 return;
             }
             today = DateTime.Today;

@@ -64,6 +64,10 @@ namespace LibrarySystem.Views
                     MessageBox.Show("Данный год ещё даже не произошёл");
                     return;
                 }
+                else if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text))
+                {
+                    MessageBox.Show("Заполните все поля");
+                }
                 else
                 {
                     if (Saver.FormFunctionName == "Добавить")

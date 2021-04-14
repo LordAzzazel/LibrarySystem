@@ -59,6 +59,10 @@ namespace LibrarySystem.Views
                 MessageBox.Show("Данный человек слишком молод, чтобы быть читателем");
                 return;
             }
+            else if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text))
+            {
+                MessageBox.Show("Заполните все поля");
+            }
             else if (isExist)
             {
                 MessageBox.Show("Наличие одинакового номера телефона у 2 человек невозможно");
