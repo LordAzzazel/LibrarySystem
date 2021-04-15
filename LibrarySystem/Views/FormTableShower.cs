@@ -31,11 +31,11 @@ namespace LibrarySystem.Views
             btnNeedToReturn.Visible = false;
             dataGridView1.ReadOnly = true;
             Saver.TableShower = this;
-            Checker();
+            CheckerTableShower();
         }
         private void FormTableShower_EnabledChanged(object sender, EventArgs e)
         {
-            Checker();
+            CheckerTableShower();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -70,7 +70,7 @@ namespace LibrarySystem.Views
         private void btnDel_Click(object sender, EventArgs e)
         {
             idName = "Id";
-            SearchValuesChecker();
+            DelQueryChecker();
             bool isExist = dc.isExist(delCheckQuery);
             if(form is GivenBookAddUpg || form is LibrarianAddUpg)
             {
@@ -94,7 +94,7 @@ namespace LibrarySystem.Views
             }
             query = $"Delete from {tableName} where {idName} = {dataGridView1.CurrentRow.Cells[0].Value}";
             dc.Delete(query);
-            Checker();
+            CheckerTableShower();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -129,7 +129,7 @@ namespace LibrarySystem.Views
             }
             else if(btnNeedToReturn.Text == "Отменить")
             {
-                Checker();
+                CheckerTableShower();
                 btnNeedToReturn.Text = "Просроченные";
             }
         }
@@ -140,7 +140,7 @@ namespace LibrarySystem.Views
         }
 
 
-        private void Checker()
+        private void CheckerTableShower()
         {
             switch (Saver.Status)
             {
@@ -206,26 +206,44 @@ namespace LibrarySystem.Views
             {
                 case "Книги":
                     searchValues = $"[{dataGridView1.Columns[1].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[2].HeaderText}] LIKE '%{textBox1.Text}%' OR Convert([{dataGridView1.Columns[3].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[4].HeaderText}] LIKE '%{textBox1.Text}%' OR Convert([{dataGridView1.Columns[5].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%'";
-                    delCheckQuery = $"Select * from GivenBooks Where Название_Книги = { dataGridView1.CurrentRow.Cells[0].Value}";
                     break;
                 case "Читатели":
                     searchValues = $"Convert([{dataGridView1.Columns[0].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[1].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[2].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[3].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[4].HeaderText}] LIKE '%{textBox1.Text}%' OR Convert([{dataGridView1.Columns[5].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%' OR Convert([{dataGridView1.Columns[6].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%' Or Convert([{dataGridView1.Columns[7].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%'";
-                    delCheckQuery = $"Select * from GivenBooks Where Номер_Билета_Читателя = { dataGridView1.CurrentRow.Cells[0].Value }";
                     break;
                 case "Выданные книги":
                     searchValues = $"[{dataGridView1.Columns[1].HeaderText}] LIKE '%{textBox1.Text}%' OR Convert([{dataGridView1.Columns[2].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%' OR Convert([{dataGridView1.Columns[3].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[4].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[5].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[6].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[7].HeaderText}] LIKE '%{textBox1.Text}%'";
-                    delCheckQuery = $"Select * from GivenBooks";
                     break;
                 case "Авторы":
                     searchValues = $"[{dataGridView1.Columns[1].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[2].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[3].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[4].HeaderText}] LIKE '%{textBox1.Text}%' OR Convert([{dataGridView1.Columns[5].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%'";
-                    delCheckQuery = $"Select * from Books Where Автор = {dataGridView1.CurrentRow.Cells[0].Value}";
                     break;
                 case "Издательства":
                     searchValues = $"[{dataGridView1.Columns[1].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[2].HeaderText}] LIKE '%{textBox1.Text}%' OR Convert([{dataGridView1.Columns[3].HeaderText}], 'System.String') LIKE '%{textBox1.Text}%'";
-                    delCheckQuery = $"Select * from Books Where Издательство = {dataGridView1.CurrentRow.Cells[0].Value}";
                     break;
                 case "Библиотекари":
                     searchValues = $"[{dataGridView1.Columns[1].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[2].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[3].HeaderText}] LIKE '%{textBox1.Text}%' OR [{dataGridView1.Columns[4].HeaderText}] LIKE '%{textBox1.Text}%'";
+                    break;
+            }
+        }
+        private void DelQueryChecker()
+        {
+            switch (Saver.Status)
+            {
+                case "Книги":
+                    delCheckQuery = $"Select * from GivenBooks Where Название_Книги = { dataGridView1.CurrentRow.Cells[0].Value}";
+                    break;
+                case "Читатели":
+                    delCheckQuery = $"Select * from GivenBooks Where Номер_Билета_Читателя = { dataGridView1.CurrentRow.Cells[0].Value }";
+                    break;
+                case "Выданные книги":
+                    delCheckQuery = $"Select * from GivenBooks";
+                    break;
+                case "Авторы":
+                    delCheckQuery = $"Select * from Books Where Автор = {dataGridView1.CurrentRow.Cells[0].Value}";
+                    break;
+                case "Издательства":
+                    delCheckQuery = $"Select * from Books Where Издательство = {dataGridView1.CurrentRow.Cells[0].Value}";
+                    break;
+                case "Библиотекари":
                     delCheckQuery = $"Select * from Users";
                     break;
             }

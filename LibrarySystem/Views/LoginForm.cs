@@ -12,10 +12,10 @@ using System.Windows.Forms;
 
 namespace LibrarySystem
 {
-    public partial class Form1 : Form
+    public partial class Login : Form
     {
         private string loginAccess;
-        public Form1()
+        public Login()
         {
             InitializeComponent();
         }

@@ -13,9 +13,9 @@ namespace LibrarySystem.Views
 {
     public partial class GivenBookAddUpg : Form
     {
-        private string query, tableReader, tableBook, readerId, bookId;
+        private string query, UpdQuery, tableReader, tableBook, readerId, bookId;
         private int bookNumber;
-        private DateTime today;
+        private DateTime today, day;
         DatabaseConnection dc;
 
         public GivenBookAddUpg()
@@ -29,6 +29,7 @@ namespace LibrarySystem.Views
         {
             today = DateTime.Today;
             dateTimePicker1.MaxDate = new DateTime(today.Year, today.Month + 1, 31);
+            dateTimePicker1.MinDate = new DateTime(today.Year, today.Month, today.Day + 1);
             string readerssQuery = $"Select * from { tableReader }";
             string booksQuery = $"Select * from { tableBook }";
             dc.FillCombobox(readerssQuery, comboBox1, "Инициалы");
@@ -37,8 +38,16 @@ namespace LibrarySystem.Views
             {
                 ReaderNumberLabel.Text = "Номер билета:";
                 comboBox1.Text = Saver.Values[3];
+                day = Convert.ToDateTime(Saver.Values[2]);
+                if(day < today)
+                {
+                    dateTimePicker1.Value = new DateTime(today.Year, today.Month, today.Day + 1);
+                }
+                else
+                {
+                    dateTimePicker1.Value = day;
+                }
                 comboBox2.Text = Saver.Values[1];
-                dateTimePicker1.Text = Saver.Values[2];
                 comboBox1.Enabled = false;
                 comboBox2.Enabled = false;
             }
@@ -90,11 +99,11 @@ namespace LibrarySystem.Views
                 }
                 else if (Saver.FormFunctionName == "Продлить")
                 {
-                    query = $"Update GivenBooks Set Номер_Билета_Читателя = { comboBox1.Text }, Название_Книги = { bookId }, Дата_сдачи = '{ dateTimePicker1.Value }' Where Id = { Saver.Values[0]}";
-                    dc.AddorUpgr(query, "Продлено");
-                    Saver.FormEnabler();
                     comboBox1.Enabled = true;
                     comboBox2.Enabled = true;
+                    UpdQuery = $"Update GivenBooks Set Номер_Билета_Читателя = { comboBox1.Text }, Название_Книги = { bookId }, Дата_сдачи = '{ dateTimePicker1.Value }' Where Id = { Saver.Values[0]}";
+                    dc.AddorUpgr(UpdQuery, "Продлено");
+                    Saver.FormEnabler();
                     Hide();
                 }
                 else
