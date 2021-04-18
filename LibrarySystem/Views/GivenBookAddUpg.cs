@@ -39,9 +39,28 @@ namespace LibrarySystem.Views
                 ReaderNumberLabel.Text = "Номер билета:";
                 comboBox1.Text = Saver.Values[3];
                 day = Convert.ToDateTime(Saver.Values[2]);
-                if(day < today)
+                if (day < today)
                 {
-                    dateTimePicker1.Value = new DateTime(today.Year, today.Month, today.Day + 1);
+                    if (DateTime.DaysInMonth(today.Year, today.Month) == today.Day)
+                    {
+                        dateTimePicker1.Value = new DateTime(today.Year, today.Month, today.Day);
+                    }
+                    else
+                    {
+                        dateTimePicker1.Value = new DateTime(today.Year, today.Month, today.Day + 1);
+                    }
+
+                }
+                else if (day > today)
+                {
+                    if (DateTime.DaysInMonth(day.Year, day.Month) == day.Day)
+                    {
+                        dateTimePicker1.Value = new DateTime(day.Year, day.Month, day.Day);
+                    }
+                    else
+                    {
+                        dateTimePicker1.Value = new DateTime(day.Year, day.Month, day.Day + 1);
+                    }
                 }
                 else
                 {
