@@ -108,7 +108,6 @@ namespace LibrarySystem.Views
         {
             if(string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text))
             {
-                MessageBox.Show("Заполните все поля");
                 return;
             }
             else

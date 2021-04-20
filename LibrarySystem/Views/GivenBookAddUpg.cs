@@ -64,7 +64,7 @@ namespace LibrarySystem.Views
                 }
                 else
                 {
-                    dateTimePicker1.Value = day;
+                    dateTimePicker1.Value = new DateTime(day.Year, day.Month, day.Day);
                 }
                 comboBox2.Text = Saver.Values[1];
                 comboBox1.Enabled = false;
@@ -108,7 +108,7 @@ namespace LibrarySystem.Views
                     }
                     else
                     {
-                        query = $"Insert into GivenBooks values(N'{ readerId }', N'{ bookId }', '{ dateTimePicker1.Value }')";
+                        query = $"Insert into GivenBooks values(N'{ readerId }', N'{ bookId }', '{ dateTimePicker1.Value.Date.ToString("MM/dd/yyyy") }')";
                         dc.BookNumberChanger(bookNumber, int.Parse(bookId));
                         dc.AddorUpgr(query, "Выдано");
                         Saver.FormEnabler();
@@ -120,7 +120,7 @@ namespace LibrarySystem.Views
                 {
                     comboBox1.Enabled = true;
                     comboBox2.Enabled = true;
-                    UpdQuery = $"Update GivenBooks Set Номер_Билета_Читателя = { comboBox1.Text }, Название_Книги = { bookId }, Дата_сдачи = '{ dateTimePicker1.Value }' Where Id = { Saver.Values[0]}";
+                    UpdQuery = $"Update GivenBooks Set Номер_Билета_Читателя = { comboBox1.Text }, Название_Книги = { bookId }, Дата_сдачи = '{ dateTimePicker1.Value.Date.ToString("MM/dd/yyyy") }' Where Id = { Saver.Values[0]}";
                     dc.AddorUpgr(UpdQuery, "Продлено");
                     Saver.FormEnabler();
                     Hide();
