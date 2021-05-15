@@ -63,6 +63,13 @@ namespace LibrarySystem.Views
             {
                 MessageBox.Show("Заполните все поля");
             }
+            else if (Saver.FormFunctionName == "Изменить")
+            {
+                query = $"Update Readers Set Фамилия = N'{ textBox1.Text }', Имя = N'{ textBox2.Text }', Отчество = N'{ textBox3.Text }', Инициалы = N'{textBox4.Text}',Телефон = '{ maskedTextBox1.Text }', Дата_Рождения = '{ dateTimePicker1.Value }', Адрес = N'{ textBox6.Text }' Where Номер_билета = { Saver.Values[0]}";
+                dc.AddorUpgr(query, "Изменено");
+                Saver.FormEnabler();
+                Hide();
+            }
             else if (isExist)
             {
                 MessageBox.Show("Наличие одинакового номера телефона у 2 человек невозможно");
@@ -72,13 +79,6 @@ namespace LibrarySystem.Views
             {
                 query = $"Insert into Readers values(N'{ textBox1.Text }', N'{ textBox2.Text }', N'{ textBox3.Text}', N'{textBox4.Text}','{ maskedTextBox1.Text }', '{ dateTimePicker1.Value }', N'{ textBox6.Text }')";
                 dc.AddorUpgr(query, "Добавлено");
-                Saver.FormEnabler();
-                Hide();
-            }
-            else if (Saver.FormFunctionName == "Изменить")
-            {
-                query = $"Update Readers Set Фамилия = N'{ textBox1.Text }', Имя = N'{ textBox2.Text }', Отчество = N'{ textBox3.Text }', Инициалы = N'{textBox4.Text}',Телефон = '{ maskedTextBox1.Text }', Дата_Рождения = '{ dateTimePicker1.Value }', Адрес = N'{ textBox6.Text }' Where Номер_билета = { Saver.Values[0]}";
-                dc.AddorUpgr(query, "Изменено");
                 Saver.FormEnabler();
                 Hide();
             }

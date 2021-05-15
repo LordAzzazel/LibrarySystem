@@ -28,7 +28,7 @@ namespace LibrarySystem.Views
         private void GivenBookAddUpg_Load(object sender, EventArgs e)
         {
             today = DateTime.Today;
-            dateTimePicker1.MaxDate = new DateTime(today.Year, today.Month + 1, 31);
+            dateTimePicker1.MaxDate = new DateTime(today.Year, today.Month + 1, System.DateTime.DaysInMonth(today.Year, today.Month + 1));
             dateTimePicker1.MinDate = new DateTime(today.Year, today.Month, today.Day + 1);
             string readerssQuery = $"Select * from { tableReader }";
             string booksQuery = $"Select * from { tableBook }";
