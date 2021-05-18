@@ -72,7 +72,7 @@ namespace LibrarySystem.Views
             idName = "Id";
             DelQueryChecker();
             bool isExist = dc.isExist(delCheckQuery);
-            if(form is GivenBookAddUpg || form is LibrarianAddUpg)
+            if (form is GivenBookAddUpg || form is LibrarianAddUpg)
             {
                 isExist = false;
             }
@@ -85,18 +85,17 @@ namespace LibrarySystem.Views
             {
                 idName = "Номер_билета";
             }
-            else if(Saver.Status == "Выданные книги")
+            query = $"Delete from {tableName} where {idName} = {dataGridView1.CurrentRow.Cells[0].Value}";
+            dc.Delete(query);
+            if (Saver.Status == "Выданные книги" && Saver.StateStop == false)
             {
                 string bookId = dc.GetItemId(dataGridView1.CurrentRow.Cells[1].Value.ToString(), "Название_книги", "Books");
                 int bookNumber = dc.GetBookQuontity(dataGridView1.CurrentRow.Cells[1].Value.ToString());
                 dc.BookNumberChanger(bookNumber, int.Parse(bookId), Adding);
 
             }
-            query = $"Delete from {tableName} where {idName} = {dataGridView1.CurrentRow.Cells[0].Value}";
-            dc.Delete(query);
             CheckerTableShower();
         }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             

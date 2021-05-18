@@ -25,6 +25,8 @@ namespace LibrarySystem.Service
 
         public static Form TableShower { get; set; }
 
+        public static bool StateStop { get; set; } = false;
+
         public static void FormDisabler()
         {
             MainForm.Enabled = false;

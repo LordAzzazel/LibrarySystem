@@ -81,6 +81,11 @@ namespace LibrarySystem.Service
                 SqlDataAdapter SDA = new SqlDataAdapter(query, sqlConnection);
                 SDA.SelectCommand.ExecuteNonQuery();
                 sqlConnection.Close();
+                Saver.StateStop = false;
+            }
+            else if (result == DialogResult.No)
+            {
+                Saver.StateStop = true;
             }
 
         }
